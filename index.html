@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soyoun 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@400;600;800&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* A안 · 답안지 — 질문 세 개에 답하는 시험지 형식. 원칙: 한 문장은 한 줄(.ln). 데스크톱 폭에서 꺾이지 않도록 문장 길이와 칸 너비를 맞춘다 */
+:root {
+  --paper: #FBFBFA; --sheet: #FFFFFF; --ink: #15171C; --ink2: #3D424C; --mute: #6B717C; --rule: #E2E4E8; --rule2: #C9CDD4;
+  --blue: #1F4FD1; --blue-soft: #EAF0FF;
+  --display: "Hahmlet", "Noto Serif KR", serif; --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #111318; --sheet: #171A21; --ink: #ECEEF2; --ink2: #C3C8D2; --mute: #8C93A0; --rule: #262B35; --rule2: #353B47;
+  --blue: #7FA2FF; --blue-soft: #1C2540; color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #111318; --sheet: #171A21; --ink: #ECEEF2; --ink2: #C3C8D2; --mute: #8C93A0; --rule: #262B35; --rule2: #353B47;
+  --blue: #7FA2FF; --blue-soft: #1C2540; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.75; word-break: keep-all; overflow-wrap: break-word; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.3; }
+p { margin: 0; }
+.ln { display: block; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+
+.top { border-bottom: 2px solid var(--ink); background: var(--sheet); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; }
+.top .wrap { display: flex; flex-wrap: wrap; gap: 6px 24px; align-items: baseline; padding-block: 12px; font-size: .85rem; }
+.top b { font-family: var(--display); font-size: 1.05rem; }
+.top .f { color: var(--mute); }
+.top nav { margin-left: auto; display: flex; gap: 16px; flex-wrap: wrap; }
+.top nav a { text-decoration: none; }
+.top nav a:hover { color: var(--blue); }
+
+.cover { background: var(--sheet); border-bottom: 1px solid var(--rule2); }
+.cover .wrap { padding-block: 52px 44px; }
+.eyebrow { font-size: .8rem; letter-spacing: .14em; color: var(--blue); font-weight: 700; }
+.cover h1 { font-size: clamp(1.6rem, 3.6vw, 2.6rem); font-weight: 800; margin: 14px 0 18px; }
+.cover h1 em { font-style: normal; color: var(--blue); }
+.cover .lead { color: var(--ink2); font-size: 1.02rem; }
+.toc { margin-top: 30px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1.5px solid var(--ink); }
+.toc a { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; padding: 14px 16px; text-decoration: none; border-left: 1px solid var(--rule2); }
+.toc a:first-child { border-left: 0; }
+.toc a:hover { background: var(--blue-soft); }
+.toc a span { font-family: var(--display); font-weight: 800; color: var(--blue); font-size: 1.35rem; line-height: 1.3; }
+.toc a b { display: block; font-weight: 500; font-size: .95rem; }
+.toc a small { display: block; color: var(--mute); font-size: .78rem; }
+@media (max-width: 820px) { .toc { grid-template-columns: 1fr; } .toc a { border-left: 0; border-top: 1px solid var(--rule2); } .toc a:first-child { border-top: 0; } }
+
+section { padding-block: 60px; border-bottom: 1px solid var(--rule2); scroll-margin-top: 48px; }
+.q { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 32px; }
+.qno { font-family: var(--display); font-weight: 800; font-size: 4.5rem; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--ink); position: sticky; top: 72px; align-self: start; }
+.qno small { display: block; -webkit-text-stroke: 0; color: var(--blue); font-size: .8rem; letter-spacing: .1em; margin-top: 10px; font-family: var(--body); font-weight: 700; }
+.ask { font-size: .92rem; color: var(--mute); margin-bottom: 6px; }
+.q h2 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); font-weight: 600; }
+.answer { margin: 18px 0 26px; padding: 16px 22px; background: var(--blue-soft); border-left: 4px solid var(--blue); font-size: 1.02rem; font-weight: 500; }
+.rows { border-top: 1.5px solid var(--ink); }
+.row { display: grid; grid-template-columns: 70px 200px minmax(0, 1fr); gap: 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.row .s { font-size: .72rem; font-weight: 700; letter-spacing: .08em; color: var(--blue); }
+.row .s.two { color: var(--ink); }
+.row b { font-size: .95rem; }
+.row p { font-size: .92rem; color: var(--ink2); }
+.score { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.score div { border: 1.5px solid var(--ink); padding: 8px 14px; font-size: .82rem; color: var(--ink2); }
+.score b { font-family: var(--display); font-size: 1.25rem; color: var(--ink); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.shot { margin-top: 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.shot figure { margin: 0; }
+.shot img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; border: 1px solid var(--rule2); }
+.shot figcaption { font-size: .75rem; color: var(--mute); margin-top: 4px; }
+@media (max-width: 820px) {
+  .q { grid-template-columns: 1fr; gap: 8px; } .qno { position: static; font-size: 3rem; }
+  .row { grid-template-columns: 60px minmax(0, 1fr); } .row p { grid-column: 2; } .shot { grid-template-columns: 1fr 1fr; }
+}
+
+.plain h2 { font-size: clamp(1.35rem, 2.6vw, 1.8rem); font-weight: 600; margin-bottom: 8px; }
+.sub { color: var(--ink2); margin-bottom: 24px; }
+.tbl { overflow-x: auto; border-top: 2px solid var(--ink); }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+th { font-size: .75rem; letter-spacing: .08em; color: var(--mute); }
+td.y { font-family: var(--display); font-weight: 600; }
+td.n { font-weight: 700; }
+.lv { display: inline-flex; gap: 3px; vertical-align: middle; }
+.lv i { width: 10px; height: 10px; border: 1.5px solid var(--blue); border-radius: 50%; }
+.lv i.on { background: var(--blue); }
+tr.full td { background: var(--blue-soft); }
+.tbl a { color: var(--blue); font-weight: 500; }
+
+.games { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.game { border: 1.5px solid var(--ink); background: var(--sheet); display: grid; grid-template-rows: auto 1fr; }
+.game img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; border-bottom: 1.5px solid var(--ink); }
+.game div { padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
+.game h3 { font-size: 1.4rem; }
+.game .m { font-size: .8rem; color: var(--mute); }
+.game a.go { justify-self: start; margin-top: 8px; background: var(--ink); color: var(--sheet); text-decoration: none; padding: 8px 14px; font-size: .88rem; }
+.games.one { grid-template-columns: minmax(0, 1fr); max-width: 620px; }
+@media (max-width: 820px) { .games { grid-template-columns: 1fr; } }
+
+.tabs { display: flex; flex-wrap: wrap; border-bottom: 2px solid var(--ink); }
+.tabs button { font-family: var(--body); background: none; border: 0; padding: 12px 18px; cursor: pointer; color: var(--mute); font-size: .95rem; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--blue); font-weight: 700; }
+.stage { margin: 22px auto 0; max-width: 880px; border: 1px solid var(--rule2); background: #fff; }
+.stage img { width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
+.ctrl { display: flex; gap: 14px; justify-content: center; align-items: center; margin: 14px 0; font-variant-numeric: tabular-nums; }
+.ctrl button { width: 38px; height: 38px; border: 1.5px solid var(--ink); background: var(--sheet); color: var(--ink); cursor: pointer; }
+.ctrl button:disabled { opacity: .3; }
+.thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+.vthumb { flex: 0 0 92px; border: 2px solid transparent; padding: 0; background: none; cursor: pointer; position: relative; }
+.vthumb img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+.vthumb span { position: absolute; right: 2px; bottom: 2px; font-size: .65rem; background: var(--ink); color: var(--sheet); padding: 0 4px; }
+.vthumb[aria-current="true"] { border-color: var(--blue); }
+footer .wrap { padding-block: 26px; font-size: .85rem; color: var(--mute); display: flex; gap: 18px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap"><b>엄소윤</b><span class="f">게임 기획자</span>
+  <nav><a href="#q1">Q1 역할 설계</a><a href="#q2">Q2 문제 구조화</a><a href="#q3">Q3 빠른 적용</a><a href="#games">게임</a><a href="#pf">포트폴리오</a></nav></div></div>
+
+<header class="cover"><div class="wrap">
+  <p class="eyebrow">GAME MAKER · 게임 기획자 엄소윤</p>
+  <h1>처음 만든 게임부터, <em>AI와 함께</em> 만들어 왔습니다.</h1>
+  <p class="lead">
+    <span class="ln">2023년 첫 IP 게임부터 AI로 코드와 아트 초안을 만들었습니다.</span>
+    <span class="ln">2026년 11월에는 AI 에이전트 팀과 게임 한 편을 8일 만에 끝까지 완성했습니다.</span>
+    <span class="ln">무엇을 만들지 정하고, 결과를 판정하는 일은 제가 합니다.</span>
+  </p>
+  <nav class="toc" aria-label="문항">
+    <a href="#q1"><span>Q1</span><div><b>AI와 사람의 역할을 어떻게 나누나요?</b><small>역할 설계</small></div></a>
+    <a href="#q2"><span>Q2</span><div><b>문제를 어떻게 정의하고 나누나요?</b><small>문제 구조화</small></div></a>
+    <a href="#q3"><span>Q3</span><div><b>새 도구를 얼마나 빨리 익혀 쓰나요?</b><small>빠른 적용</small></div></a>
+  </nav>
+</div></header>
+
+<section id="q1"><div class="wrap q">
+  <div class="qno">Q1<small>역할 설계</small></div>
+  <div>
+    <p class="ask">AI와 사람의 역할을 어떻게 나누나요?</p>
+    <h2>AI는 만들고, 사람은 정하고 판정합니다.</h2>
+    <p class="answer">
+      <span class="ln">시작할 때 AI에 맡길 범위와 사람이 승인할 지점을 먼저 정합니다.</span>
+      <span class="ln">AI의 범위는 초안에서 게임 전체로 넓어졌지만, 이 원칙은 같습니다.</span>
+    </p>
+    <div class="rows">
+      <div class="row"><span class="s">STEP 1</span><b>화이트데이 아트 공정</b><p>AI는 초안까지, 디자이너가 다듬어 한 캐릭터로 통일했습니다.</p></div>
+      <div class="row"><span class="s">STEP 1</span><b>마루는 강쥐 대사 검수</b><p>GPTs 초안 → 기획자 수정 → 팀 리뷰 → IP 홀더 검수</p></div>
+      <div class="row"><span class="s two">STEP 2</span><b>Seven Steps</b><p>사람 1 · 조율자 1 · 에이전트 9, 배포는 제 승인 뒤에만</p></div>
+      <div class="row"><span class="s two">STEP 2</span><b>Seven Steps QA</b><p>성격이 다른 AI 테스터 3명에게 정답 없이 플레이하는 QA를 맡겼습니다.</p></div>
+    </div>
+    <div class="score"><div><b>1,158</b>Seven Steps 커밋</div><div><b>9개</b>개발 에이전트</div><div><b>5회</b>블라인드 AI QA</div></div>
+    <div class="shot">
+      <figure><img src="img/mj_2.jpg" alt="Midjourney로 만든 귀신 초안"><figcaption>화이트데이 · AI 초안</figcaption></figure>
+      <figure><img src="img/ss_orch.jpg" alt="조율자를 거쳐 리드, Codex, QA로 나뉘는 작업 구조"><figcaption>Seven Steps · 작업 구조</figcaption></figure>
+      <figure><img src="img/ss_keepswitch.jpg" alt="Seven Steps 스테이지 화면"><figcaption>Seven Steps · 출시 화면</figcaption></figure>
+    </div>
+  </div>
+</div></section>
+
+<section id="q2"><div class="wrap q">
+  <div class="qno">Q2<small>문제 구조화</small></div>
+  <div>
+    <p class="ask">문제를 어떻게 정의하고 나누나요?</p>
+    <h2>막연한 질문을 기준으로 바꾸고, 확인할 단위로 쪼갭니다.</h2>
+    <p class="answer">
+      <span class="ln">AI가 잘 답하려면 '무엇이 맞는 결과인가'가 먼저 정해져야 합니다.</span>
+      <span class="ln">그래서 맡기기 전에 기준을 정의하고, 한 번에 확인할 크기로 나눕니다.</span>
+    </p>
+    <div class="rows">
+      <div class="row"><span class="s">STEP 1</span><b>원작 말투 기준</b><p>'원작과 맞는가'를 말투 기준 네 가지로 나눠 GPTs에 맡겼습니다.</p></div>
+      <div class="row"><span class="s">STEP 1</span><b>아이러브커피 데이터</b><p>ID 규칙과 데이터 명세를 먼저 정리한 뒤 LLM과 연결했습니다.</p></div>
+      <div class="row"><span class="s two">STEP 2</span><b>Seven Steps 피드백</b><p>다섯 갈래 피드백을 "왜 셋인가"라는 한 질문으로 묶었습니다.</p></div>
+      <div class="row"><span class="s two">STEP 2</span><b>Seven Steps 규칙</b><p>규칙 원본을 코드에 하나만 두고 솔버로 웹과 Unity를 맞췄습니다.</p></div>
+    </div>
+    <div class="score"><div><b>53/53</b>레벨 검증</div><div><b>956</b>EditMode 테스트</div><div><b>50+3</b>스테이지 · 튜토리얼</div></div>
+    <div class="shot">
+      <figure><img src="img/maru_dialog.jpg" alt="마루는 강쥐 대화 화면"><figcaption>마루는 강쥐 · 대사</figcaption></figure>
+      <figure><img src="img/ss_cutscene.jpg" alt="세 형제가 별을 잇는 컷신"><figcaption>"왜 셋인가"를 담은 컷신</figcaption></figure>
+      <figure><img src="img/ss_altar_compare.jpg" alt="시안과 Blender 모델을 나란히 놓은 비교 렌더"><figcaption>Seven Steps · 시안 비교 렌더</figcaption></figure>
+    </div>
+  </div>
+</div></section>
+
+<section id="q3"><div class="wrap q">
+  <div class="qno">Q3<small>빠른 적용</small></div>
+  <div>
+    <p class="ask">새 도구를 얼마나 빨리 익혀 쓰나요?</p>
+    <h2>배운 것은 바로 쓰고, 부딪힌 일은 규칙으로 남깁니다.</h2>
+    <p class="answer">
+      <span class="ln">AI의 답을 검증하려고 엔진을 공부했습니다.</span>
+      <span class="ln">10월에 익힌 에이전트 운용을 11월 게임잼 출품작에 바로 썼고, 실패는 규칙으로 남겼습니다.</span>
+    </p>
+    <div class="rows">
+      <div class="row"><span class="s">STEP 1</span><b>달토끼네 방앗간</b><p>AI가 제안한 쿨타임 5초를 플레이해 보고 1 ~ 30초로 나눴습니다.</p></div>
+      <div class="row"><span class="s">STEP 1</span><b>Merge Soldier</b><p>AI가 못 푼 버그를 Unity 생명주기를 공부해 직접 찾았습니다.</p></div>
+      <div class="row"><span class="s two">STEP 2</span><b>10월 → 11월</b><p>AI Study에서 익힌 운용을 한 달 뒤 Unity 게임잼 출품작에 썼습니다.</p></div>
+      <div class="row"><span class="s two">STEP 2</span><b>AI 테스터의 한계</b><p>난이도는 못 잰다는 것을 확인하고, 퀴즈로 이해도를 쟀습니다.</p></div>
+    </div>
+    <div class="score"><div><b>8일</b>기획부터 출시까지</div><div><b>5회</b>QA 라운드</div><div><b>30장</b>컷신 그림</div></div>
+    <div class="shot">
+      <figure><img src="img/moonrabbit.jpg" alt="달토끼네 방앗간 화면"><figcaption>달토끼네 방앗간 · 2024</figcaption></figure>
+      <figure><img src="img/merge.jpg" alt="Merge Soldier 타이틀"><figcaption>Merge Soldier · 2024</figcaption></figure>
+      <figure><img src="img/ss_title.jpg" alt="Seven Steps 타이틀 화면"><figcaption>Seven Steps · 2026</figcaption></figure>
+    </div>
+  </div>
+</div></section>
+
+<section class="plain"><div class="wrap">
+  <h2>만든 게임마다, AI가 함께 있었습니다</h2>
+  <p class="sub">점은 AI가 맡은 범위입니다. 측정값이 아니라 구분입니다.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>시기</th><th>게임 · 프로젝트</th><th>AI가 맡은 범위</th><th>AI가 만든 것</th><th>제가 한 것</th><th>영상 · 플레이</th></tr></thead>
+    <tbody>
+      <tr><td class="y">2023</td><td class="n">순정빌런</td><td><span class="lv"><i class="on"></i><i></i><i></i><i></i><i></i></span></td><td>몬스터 패턴 코드</td><td>IP 관계성을 맵 생성 규칙으로</td><td><a href="https://youtu.be/veig-T09qdE" target="_blank" rel="noopener">티저 ↗</a></td></tr>
+      <tr><td class="y">2024</td><td class="n">달토끼네 방앗간</td><td><span class="lv"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td><td>C# 코드 · 밸런스 시뮬레이터</td><td>규칙과 값을 플레이로 확정</td><td>-</td></tr>
+      <tr><td class="y">2024</td><td class="n">Merge Soldier</td><td><span class="lv"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td><td>로직 · 애니메이션 코드</td><td>마일스톤 관리, 버그 직접 추적</td><td><a href="https://youtu.be/3LtAaRUztRc" target="_blank" rel="noopener">트레일러 ↗</a></td></tr>
+      <tr><td class="y">2024 ~ 25</td><td class="n">화이트데이</td><td><span class="lv"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></td><td>배경 · 캐릭터 아트 초안</td><td>아트 공정 · 퍼즐 설계 · PM</td><td><a href="https://youtu.be/7SuXZrMvx8A" target="_blank" rel="noopener">트레일러 ↗</a></td></tr>
+      <tr><td class="y">2025 ~</td><td class="n">마루는 강쥐</td><td><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></td><td>대사 검수 · 조회 · SQL 초안 · 도구</td><td>기준 · 지표 · IP 검수</td><td>-</td></tr>
+      <tr><td class="y">2026.10</td><td class="n">AI Study</td><td><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></td><td>에이전트 6종이 설계 · 아트 · 코드</td><td>역할 정의 · 승인 · 판정</td><td>-</td></tr>
+      <tr class="full"><td class="y">2026.11</td><td class="n">Seven Steps</td><td><span class="lv"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></td><td>에이전트 9개가 게임 전체</td><td>방향 · 시안 선택 · QA 기준</td><td><a href="https://somonso.itch.io/seven-steps" target="_blank" rel="noopener">플레이 ↗</a></td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="plain" id="games"><div class="wrap">
+  <h2>직접 플레이해 볼 수 있습니다</h2>
+  <p class="sub">2026년 11월, AI 에이전트 팀과 만들어 Unity 게임잼에 출품한 작품입니다.</p>
+  <div class="games one">
+    <article class="game"><img src="img/ss_planets.jpg" alt="Seven Steps 행성 지도"><div><h3>Seven Steps</h3><p class="m">Official 2026 Unity Game Jam · Unity 6 · 웹 · Windows</p><p>일곱 번째 걸음만 세상을 바꾸는 턴제 퍼즐, 50스테이지</p><a class="go" href="https://somonso.itch.io/seven-steps" target="_blank" rel="noopener">itch.io에서 플레이 ↗</a></div></article>
+  </div>
+</div></section>
+
+<section class="plain" id="pf"><div class="wrap" data-viewer>
+  <h2>포트폴리오 3종</h2>
+  <p class="sub">AI 활용 포트폴리오가 대표 문서이고, 경력 · PR 문서도 함께 볼 수 있습니다.</p>
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-doc="ai">AI 활용 · 20쪽</button>
+    <button role="tab" aria-selected="false" data-doc="career">경력 · 22쪽</button>
+    <button role="tab" aria-selected="false" data-doc="pr">PR 문서 · 12쪽</button>
+  </div>
+  <div class="stage"><img data-page src="pages/ai/p01.jpg" alt="AI 활용 포트폴리오 1쪽"></div>
+  <div class="ctrl"><button data-prev aria-label="이전 쪽">‹</button><span data-count>1 / 19</span><button data-next aria-label="다음 쪽">›</button></div>
+  <div class="thumbs" data-thumbs></div>
+</div></section>
+
+<footer><div class="wrap"><span>엄소윤 · 게임 기획자</span><a href="https://somonso.itch.io/seven-steps" target="_blank" rel="noopener">Seven Steps ↗</a></div></footer>
+<script src="viewer.js"></script>
+
+</body>
+</html>
